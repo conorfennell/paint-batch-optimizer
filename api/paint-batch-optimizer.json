@@ -19,7 +19,22 @@
           "description": "represents the service is live and accepting traffic"
         }
       ]
-    }
+    },
+    "sheen": {
+      "description": "available paint sheens",
+      "values": [
+        {
+          "name": "Matte",
+          "value": "M",
+          "description": "matte sheen costs more than gloss"
+        },
+        {
+          "name": "Gloss",
+          "value": "G",
+          "description": "gloss sheen costs less than matte"
+        }
+      ]
+    }    
   },
 
   "models": {
@@ -30,6 +45,75 @@
           "name": "status",
           "type": "status",
           "description": "the health status of the service"
+        }
+      ]
+    },
+    "readableError": {
+      "description": "A simple human-readable error",
+      "fields":[
+        { 
+          "name": "text",
+          "type": "string"
+        }
+      ]
+    },
+    "paint": {
+      "description": "paint and its sheen",
+      "fields": [
+        {
+          "name": "id",
+          "type": "integer",
+          "description": "paint identifier",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        {
+          "name": "sheen",
+          "type": "sheen",
+          "description": "sheen of the paint"
+        }
+      ]
+    },
+    "demand": {
+      "description": "range of customers preferences to choose from",
+      "fields": [
+        {
+          "name": "numberOfPaints",
+          "type": "integer",
+          "description": "number of paints",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        {
+          "name": "paints",
+          "type": "[paint]",
+          "description": "paints the customer would be satisfied with",
+          "minimum": 1,
+          "maximum": 2000
+        }
+      ]
+    },
+    "optimizeRequest": {
+      "description": "paint batch optimizer request",
+      "fields": [
+        {
+          "name": "colors",
+          "type": "integer",
+          "description": "number of different colours demanded by paint factory",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        {
+          "name": "customers",
+          "type": "integer",
+          "description": "number of customers",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        {
+          "name": "demands",
+          "type": "[demand]",
+          "description": "customers paint demands"
         }
       ]
     }
@@ -46,6 +130,27 @@
           "responses": {
             "200": {
               "type": "healthcheck"
+            }
+          }
+        }
+      ]
+    },
+    "optimizeRequest": {
+      "path": "/v2",
+      "operations": [
+        {
+          "method": "POST",
+          "description": "POST minimum cost paint batch optimizer request",
+          "path": "/optimize",
+          "body": {
+            "type": "optimizeRequest"
+          },
+          "responses": {
+            "200": {
+              "type": "string"
+            },
+            "422": {
+              "type": "readableError"
             }
           }
         }
