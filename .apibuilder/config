@@ -11,3 +11,7 @@ code:
         files:
         - "*ModelsJson.*"
         - "*Server.*"
+      - generator: http4s_0_20
+        target: generated-src/test/scala
+        files:
+        - "*Client.*"
