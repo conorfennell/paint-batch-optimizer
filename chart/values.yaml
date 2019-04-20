@@ -1,0 +1,11 @@
+replicas: 1
+
+image:
+  repository: conorfennell/paint-batch-optimizer
+  tag: 0.2.0
+  pullPolicy: Always
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 100Mi
