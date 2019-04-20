@@ -45,9 +45,16 @@ val dependenciesSettings = Seq(
   )
 )
 
+val dockerSettings = Seq(
+  dockerBaseImage in Docker := "openjdk:8-jre-alpine3.8",
+  maintainer in Docker := "fennell.conor@gmail.com",
+  defaultLinuxInstallLocation in Docker := "/opt/paint-batch-optimizer",
+  dockerRepository in Docker := Some("conorfennell")
+)
+
 lazy val roots = (project in file("."))
-  .enablePlugins(JavaAppPackaging)
-  .settings(commonSettings ++ dependenciesSettings: _*)
+  .enablePlugins(JavaAppPackaging, DockerPlugin)
+  .settings(commonSettings ++ dependenciesSettings ++ dockerSettings: _*)
   .settings(
     name := "paint-batch-optimizer",
     unmanagedSourceDirectories in Compile += baseDirectory.value / "generated-src" / "main" / "scala",
