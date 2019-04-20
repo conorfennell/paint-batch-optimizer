@@ -1,0 +1,55 @@
+{
+  "name": "paint-batch-optimizer",
+  "description": "service for paint factory owners to minimize the cost of paint production",
+  "namespace": "com.paintbatch",
+
+  "info": {
+    "contact": {
+      "name": "Conor Fennell",
+      "email": "fennell.conor@gmail.com"
+    }
+  },
+
+  "enums": {
+    "status": {
+      "description": "health of the service",
+      "values":[
+        {
+          "name": "ok",
+          "description": "represents the service is live and accepting traffic"
+        }
+      ]
+    }
+  },
+
+  "models": {
+    "healthcheck": {
+      "description": "health of the service",
+      "fields": [
+        {
+          "name": "status",
+          "type": "status",
+          "description": "the health status of the service"
+        }
+      ]
+    }
+  },
+
+  "resources": {
+    "healthcheck": {
+      "path": "/_internal_",
+      "operations": [
+        {
+          "method": "GET",
+          "description": "GET health of service",
+          "path": "/healthcheck",
+          "responses": {
+            "200": {
+              "type": "healthcheck"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
