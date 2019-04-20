@@ -1,6 +1,6 @@
 package com.paintbatch
 
-import com.paintbatch.routes.HealthcheckRoutesImpl
+import com.paintbatch.routes.{HealthcheckRoutesImpl, OptimizeRequestRoutesImpl}
 import fs2._
 import cats.effect._
 import org.http4s.{HttpApp, HttpRoutes}
@@ -20,7 +20,7 @@ object PaintBatchOptimizer {
   val bindPort = 8080
 
   def httpRoutes[F[_]: ConcurrentEffect]: HttpRoutes[F] =
-    new HealthcheckRoutesImpl[F].service()
+    new HealthcheckRoutesImpl[F].service() <+> new OptimizeRequestRoutesImpl[F].service()
 
   def httpApp[F[_]: ConcurrentEffect: ContextShift: Timer]: HttpApp[F] =
     httpRoutes.orNotFound
