@@ -2,7 +2,8 @@
 Service for paint factory owners to minimize the cost of paint production
 
 # Useful links
-* [Paint batch optimizer API schema and clients](https://app.apibuilder.io/paintbatch-com/paint-batch-optimizer)
+* Travis [![Build Status](https://travis-ci.org/conorfennell/paint-batch-optimizer.svg?branch=master)](https://travis-ci.org/conorfennell/paint-batch-optimizer)
+* [API schema and clients](https://app.apibuilder.io/paintbatch-com/paint-batch-optimizer)
 
 # API Builder
 APIBuilder.io is used to define the api schema and generate the interfaces in scala.
