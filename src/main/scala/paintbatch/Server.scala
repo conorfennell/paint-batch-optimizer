@@ -16,8 +16,8 @@ object PaintBatchOptimizerServer extends IOApp {
 }
 
 object PaintBatchOptimizer {
-  val bindHost = "0.0.0.0"
-  val bindPort = 8080
+  val bindHost = sys.env.getOrElse("HOST", "0.0.0.0")
+  val bindPort = sys.env.getOrElse("PORT", "8080").toInt
 
   def httpRoutes[F[_]: ConcurrentEffect]: HttpRoutes[F] =
     new HealthcheckRoutesImpl[F].service() <+> new OptimizeRequestRoutesImpl[F].service()
