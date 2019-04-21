@@ -2,7 +2,7 @@
 paintbatch-com:
   paint-batch-optimizer:
     http4s_0_20:
-    - generated-src/main/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV0ModelsJson.scala
-    - generated-src/main/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV0Server.scala
-    - generated-src/test/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV0Client.scala
-    - generated-src/test/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV0MockClient.scala
+    - generated-src/main/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV1ModelsJson.scala
+    - generated-src/main/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV1Server.scala
+    - generated-src/test/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV1Client.scala
+    - generated-src/test/scala/com/paintbatch/PaintbatchComPaintBatchOptimizerV1MockClient.scala
