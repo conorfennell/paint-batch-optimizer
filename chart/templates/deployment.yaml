@@ -9,7 +9,6 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 spec:
-  replicas: {{ .Values.replicas }}
   revisionHistoryLimit: 3
   selector:
     matchLabels:
