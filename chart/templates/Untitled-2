@@ -1,4 +1,0 @@
-curl -d '{"colors":1,"customers":1,"demands":[{"numberOfPaints":1,"paints":[{"id":1,"sheen":"M"}]}]}' localhost:8080/v2/optimize
-curl localhost:8080/_internal_/healthcheck
-
-curl paintbatch.com/_internal_/healthcheck
