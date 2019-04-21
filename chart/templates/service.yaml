@@ -8,19 +8,10 @@ metadata:
     app: {{ template "example-app.name" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
-  annotations:
-    getambassador.io/config: |
-      ---
-      apiVersion: ambassador/v0
-      kind: Mapping
-      name: {{ template "example-app.fullname" . }}
-      host: paintbatch.com
-      prefix: /
-      service: {{ template "example-app.fullname" . }}
 spec:
   selector:    
     app: {{ template "example-app.name" . }}
-  type: ClusterIP
+  type: LoadBalancer
   ports:  
   - name: http
     port: 80
