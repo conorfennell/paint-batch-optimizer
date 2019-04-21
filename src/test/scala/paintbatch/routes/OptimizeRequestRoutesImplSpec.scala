@@ -16,20 +16,22 @@ class OptimizeRequestRoutesImplSpec extends WordSpec with MustMatchers with Befo
   val httpClient = new PaintBatchOptimizerClient(
     baseUrl = Uri.unsafeFromString("http://localhost"),
     httpClient = client)
-  
-  "A optimize service" when {
-    "receives a request for each paint optmization test" must {
-      "process each POST correctly" in {
+
+      s"An optimize service" when {
         SolutionFileHarness
           .getOptimizeTests()
-          .foreach(optimizeTest => 
-            httpClient.OptimizeRequests
-              .postOptimize(optimizeTest.optimizeRequest)
-              .unsafeRunSync() mustBe optimizeTest.expected
-          )
-      }
+          .zipWithIndex
+          .foreach(optimizeTestInc => {
+            val (optimizeTest, inc) = optimizeTestInc
+            s"receives a request ${inc + 1}" must {
+              s"process the POST correctly returning ${optimizeTest.expected}" in {
+                httpClient.OptimizeRequests
+                  .postOptimize(optimizeTest.optimizeRequest)
+                  .unsafeRunSync() mustBe optimizeTest.expected
+              }
+            }
+        })
     }
-  }
 }
 
 
