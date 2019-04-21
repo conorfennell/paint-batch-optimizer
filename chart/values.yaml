@@ -9,3 +9,8 @@ resources:
   requests:
     cpu: 100m
     memory: 100Mi
+
+autoscaler:
+  minReplicas: 2
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 40
