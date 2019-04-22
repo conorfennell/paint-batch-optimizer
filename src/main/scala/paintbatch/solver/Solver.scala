@@ -5,9 +5,27 @@ import com.paintbatch.models.Sheen._
 
 object Solver {
   private val IMPOSSIBLE = "IMPOSSIBLE"
-  private val INDEX_OFFSET = 1
-  private def getSelectionIndex(paintId: Int) = paintId - INDEX_OFFSET
+  private val PAINT_INDEX_OFFSET = 1
+  private def getSelectionIndex(paintId: Int) = paintId - PAINT_INDEX_OFFSET
 
+  /**
+   * The trick to the paint batch optimization is to satisfy the single preference matte customers.
+   * When they are satisfied, the remaining customers can all be satisfied with a gloss selection.
+   * 
+   * The algorithm starts by partitioning customers into single preference matte customers and mixed
+   * sheen customers.
+   * 
+   * Recursively the algorithm satisfies one matte customer if possible otherwise it is IMPOSSIBLE, then checks 
+   * how this effects each mixed sheen customers resulting in the following for them:
+   *  1. mixed sheen customer will be satisfied and removed from the mixed sheen customers
+   *  2. mixed sheen customer will be left with one gloss preference and will be assigned that selection and removed from the mixed sheen customers
+   *  3. mixed sheen customer will be left with one matte preference and added to the single preference matte customers
+   *  4. mixed sheen customer will be left with no viable preferences and it will become IMPOSSIBLE
+   * 
+   * If there are no single preference matte customers to recurse on then we have a solution and assign remaining to GLOSS
+   *  
+   * @param paints paints the customer would be satisfied with
+   */
   def optimize(optimize: OptimizeRequest): String = {
     val selection = Array.fill[Option[Sheen]](optimize.colors)(None)
 
