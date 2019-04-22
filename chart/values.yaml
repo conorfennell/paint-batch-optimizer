@@ -14,3 +14,10 @@ autoscaler:
   minReplicas: 2
   maxReplicas: 3
   targetCPUUtilizationPercentage: 40
+
+env:
+  HOST: "0.0.0.0"
+  PORT: "8080"
+  MAX_CUSTOMERS: "2000"
+  MAX_PAINTS: "2000"
+  MAX_CUSTOMER_CHOICES: "3000"

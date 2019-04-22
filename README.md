@@ -82,3 +82,13 @@ To download scala-generated code from apibuilder
 ```
 make update-generated-src
 ```
+
+# Environment variables
+
+| Parameter              | Description                                | Default   |
+|------------------------|--------------------------------------------|-----------|
+| `HOST`                 | Host that will be bound to                 | `0.0.0.0` |
+| `PORT`                 | Port that will be bound to                 | `8080`    |
+| `MAX_CUSTOMERS`        | Max customers that can be satisfied        | `2000`    |
+| `MAX_COLORS`           | Max different colors that can be requested | `2000`    |
+| `MAX_CUSTOMER_CHOICES` | Max sum of all customer preferences        | `3000`    |
