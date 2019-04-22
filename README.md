@@ -5,6 +5,11 @@ Service for paint factory owners to minimize the cost of paint production
 * Travis [![Build Status](https://travis-ci.org/conorfennell/paint-batch-optimizer.svg?branch=master)](https://travis-ci.org/conorfennell/paint-batch-optimizer)
 * [API schema and clients](https://app.apibuilder.io/paintbatch-com/paint-batch-optimizer)
 * [Docker hub repository](https://cloud.docker.com/repository/docker/conorfennell/paint-batch-optimizer)
+* [Helm chart for paint-batch-optimizer](https://github.com/conorfennell/paint-batch-optimizer/tree/master/chart)
+* [K8s Gitops optimize repository](https://github.com/conorfennell/optimizer-k8s)
+* [Argocd](https://argocd.paintbatch.com)  
+Note there is no valid certificate for https so you will get a warning that the certificate is not trusted.
+
 
 # Try the deployed API
 
@@ -45,6 +50,18 @@ curl --request POST \
 ```
 curl --request GET \
   --url http://api.paintbatch.com/_internal_/healthcheck
+```
+
+# Useful commands
+```
+# Run tests
+sbt test
+
+# Run app
+sbt run
+
+# Build local image
+echo 'version in ThisBuild := "local"' > version.sbt &&sbt docker:publishLocal
 ```
 
 # API Builder
