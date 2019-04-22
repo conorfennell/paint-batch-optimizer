@@ -4,7 +4,7 @@ settings:
 code:
   paintbatch-com:
     paint-batch-optimizer:
-      version: 1.0.0
+      version: 1.1.0
       generators:
       - generator: http4s_0_20
         target: generated-src/main/scala

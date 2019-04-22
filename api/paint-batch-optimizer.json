@@ -78,13 +78,6 @@
       "description": "range of customers preferences to choose from",
       "fields": [
         {
-          "name": "numberOfPaints",
-          "type": "integer",
-          "description": "number of paints",
-          "minimum": 1,
-          "maximum": 2000
-        },
-        {
           "name": "paints",
           "type": "[paint]",
           "description": "paints the customer would be satisfied with",

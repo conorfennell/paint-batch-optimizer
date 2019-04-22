@@ -9,7 +9,6 @@ object SolutionFileHarness {
   private val numberOfTestsIndex = 0
   private val numberOfColorsIndex = 0
   private val numberOfCustomerPaints = 1
-  private val numberOfCustomerPaintsIndex = 0
   private val paintIndex = 0
   private val sheenIndex = 1
   private val testOutIndex = 0
@@ -33,7 +32,6 @@ object SolutionFileHarness {
     
         val demands = testsIn.tail.tail.take(customers).map(customerLine => {
           val customer = customerLine.split(" ")
-          val numberOfPaints = Integer.parseInt(customer(numberOfCustomerPaintsIndex))
     
           val paints = customer.tail.grouped(2)
             .map(pair => {
@@ -46,7 +44,7 @@ object SolutionFileHarness {
             })
             .toSeq
           
-          Demand(numberOfPaints, paints)
+          Demand(paints)
         })
     
         List(OptimizeTest(OptimizeRequest(colors, customers, demands), testsOut(testOutIndex))) ++

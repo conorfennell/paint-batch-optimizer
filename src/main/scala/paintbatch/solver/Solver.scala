@@ -13,9 +13,9 @@ object Solver {
 
     val (matteCustomers, mixedSheenCustomers) = optimize
       .demands
-      .sortBy(demand => demand.numberOfPaints)
+      .sortBy(demand => demand.paints.length)
       .partition(demand => {
-        val matteOnly = demand.numberOfPaints == 1 && demand.paints.head.sheen == Matte
+        val matteOnly = demand.paints.length == 1 && demand.paints.head.sheen == Matte
         matteOnly
       })
 
@@ -62,8 +62,8 @@ object Solver {
                 viablePaints match {
                   case Nil => impossible = true
                   case Paint(id, Gloss) :: Nil => selection(getSelectionIndex(id)) = Some(Gloss)
-                  case Paint(_, Matte) :: Nil => newMatteCustomers = Demand(viablePaints.length ,viablePaints) :: newMatteCustomers
-                  case _ => newMixedSheenCustomers = Demand(viablePaints.length, viablePaints) :: newMixedSheenCustomers
+                  case Paint(_, Matte) :: Nil => newMatteCustomers = Demand(viablePaints) :: newMatteCustomers
+                  case _ => newMixedSheenCustomers = Demand(viablePaints) :: newMixedSheenCustomers
                 }
               }
             }
