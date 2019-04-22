@@ -8,7 +8,7 @@ import org.http4s.{Request, DecodeResult}
 import io.circe.Encoder
 import io.circe.syntax._
 import io.circe._
-import cats.data.EitherT
+import cats.implicits._
 
 final class OptimizeRequestRoutesImpl[F[_]](implicit F: Applicative[F]) extends OptimizeRequestRoutes[F] {
 
@@ -18,11 +18,21 @@ final class OptimizeRequestRoutesImpl[F[_]](implicit F: Applicative[F]) extends 
   ): F[PostOptimizeResponse] = {
     val result = body
       .leftMap(error => PostOptimizeResponse.HTTP422(ReadableError(error.toString)))
-      .map(Solver.optimize)
+      .map(optimizeRequest => {
+        OptimizeRequestRoutesValidation.validate(optimizeRequest) match {
+          case None => Either.right(Solver.optimize(optimizeRequest))
+          case Some(constraint) => Either.left(constraint)
+        }
+      })
   
     result.fold(
       identity, 
-      optimize => PostOptimizeResponse.HTTP200(optimize.toString(), Nil))
+      value => {
+        value match {
+          case Right(solution) => PostOptimizeResponse.HTTP200(solution, Nil)
+          case Left(brokenConstraint) => PostOptimizeResponse.HTTP422(brokenConstraint)
+        }
+      })
   }
 
   override def apiVersionMatch(req: org.http4s.Message[F]) = true
