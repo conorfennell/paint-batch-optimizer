@@ -18,7 +18,6 @@ curl --request POST \
   "customers": 2,
   "demands": [
     {
-      "numberOfPaints": 1,
       "paints": [
         {
           "id": 1,
@@ -27,7 +26,6 @@ curl --request POST \
       ]
     },
     {
-      "numberOfPaints": 1,
       "paints": [
         {
           "id": 1,
