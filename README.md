@@ -14,32 +14,32 @@ curl --request POST \
   --url http://api.paintbatch.com/v2/optimize \
   --header 'content-type: application/json' \
   --data '{
-	"colors": 10,
-	"customers": 2,
-	"demands": [
-		{
-			"numberOfPaints": 1,
-			"paints": [
-				{
-					"id": 1,
-					"sheen": "M"
-				}
-			]
-		},
-		{
-			"numberOfPaints": 1,
-			"paints": [
-				{
-					"id": 1,
-					"sheen": "G"
-				},
-				{
-					"id": 9,
-					"sheen": "M"
-				}
-			]
-		}
-	]
+  "colors": 10,
+  "customers": 2,
+  "demands": [
+    {
+      "numberOfPaints": 1,
+      "paints": [
+        {
+          "id": 1,
+          "sheen": "M"
+        }
+      ]
+    },
+    {
+      "numberOfPaints": 1,
+      "paints": [
+        {
+          "id": 1,
+          "sheen": "G"
+        },
+        {
+          "id": 9,
+          "sheen": "M"
+        }
+      ]
+    }
+  ]
 }'
 ```
 
