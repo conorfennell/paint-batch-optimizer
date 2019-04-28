@@ -15,6 +15,9 @@ autoscaler:
   maxReplicas: 3
   targetCPUUtilizationPercentage: 40
 
+service:
+  dns: api.paintbatch.com
+
 env:
   HOST: "0.0.0.0"
   PORT: "8080"
