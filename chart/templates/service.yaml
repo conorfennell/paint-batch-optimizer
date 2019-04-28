@@ -5,13 +5,13 @@ metadata:
   name: {{ template "example-app.fullname" . }}
   annotations:
     getambassador.io/config: |
-    ---
-    apiVersion: ambassador/v1
-    kind: Mapping
-    name: {{ template "example-app.fullname" . }}
-    host: {{ .Values.service.dns }}
-    prefix: /
-    service: {{ template "example-app.fullname" . }}.{{ .Release.Namespace }}
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: {{ template "example-app.fullname" . }}
+      host: {{ .Values.service.dns }}
+      prefix: /
+      service: "{{ template "example-app.fullname" . }}.{{ .Release.Namespace }}"
   labels:
     chart: {{ template "example-app.chart" . }}
     app: {{ template "example-app.name" . }}
